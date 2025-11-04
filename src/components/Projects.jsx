@@ -1,23 +1,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
+import MiniSpline from './MiniSpline';
 
 const projects = [
   {
     title: 'Neon Commerce',
-    stack: ['React', 'TypeScript', 'R3F'],
+    stack: ['React', 'TypeScript', 'Spline'],
     link: '#',
     repo: '#',
     gradient: 'from-cyan-500/20 via-fuchsia-500/10 to-purple-500/20',
-    desc: '3D product showcase with real‑time lighting and cinematic transitions.'
+    desc: '3D product showcase with real‑time lighting and cinematic transitions.',
+    scene: 'https://prod.spline.design/EF7JOSsHLk16Tlw9/scene.splinecode',
   },
   {
     title: 'Orbit Studio',
-    stack: ['Next.js', 'Framer Motion', 'WebGL'],
+    stack: ['Next.js', 'Framer Motion', 'Spline'],
     link: '#',
     repo: '#',
     gradient: 'from-purple-500/20 via-cyan-500/10 to-fuchsia-500/20',
-    desc: 'Portfolio engine with scroll‑driven scenes and generative backgrounds.'
+    desc: 'Portfolio engine with scroll‑driven scenes and generative backgrounds.',
+    scene: 'https://prod.spline.design/EF7JOSsHLk16Tlw9/scene.splinecode',
   },
   {
     title: 'Pulse Analytics',
@@ -25,7 +28,8 @@ const projects = [
     link: '#',
     repo: '#',
     gradient: 'from-fuchsia-500/20 via-purple-500/10 to-cyan-500/20',
-    desc: 'Realtime dashboards with micro‑interactions and glass UI system.'
+    desc: 'Realtime dashboards with micro‑interactions and glass UI system.',
+    scene: null,
   },
 ];
 
@@ -62,7 +66,15 @@ const Projects = () => {
               <div className={`pointer-events-none absolute -inset-1 bg-gradient-to-br ${p.gradient} opacity-0 blur-2xl transition duration-500 group-hover:opacity-60`} />
 
               <div className="relative z-10">
-                <div className="h-40 w-full rounded-xl bg-gradient-to-br from-white/10 to-white/5" />
+                <div className="h-40 w-full overflow-hidden rounded-xl bg-gradient-to-br from-white/10 to-white/5">
+                  {p.scene ? (
+                    <MiniSpline scene={p.scene} className="h-40 w-full" hoverOnly={true} />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center">
+                      <div className="text-xs text-white/60">Data visualizations preview</div>
+                    </div>
+                  )}
+                </div>
 
                 <div className="mt-4 flex items-start justify-between gap-3">
                   <div>
